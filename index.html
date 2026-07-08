@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schroders Investments | Ultimate Bot Asset Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glow-blue { box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.3); }
+        .glow-emerald { box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.25); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-[#030712] text-slate-100 min-h-screen relative overflow-x-hidden selection:bg-blue-600 selection:text-white">
+
+    <div class="bg-gradient-to-r from-blue-950 via-slate-900 to-blue-950 border-b border-blue-900/40 py-2.5 px-4 text-center text-xs font-medium text-blue-300 flex items-center justify-center gap-3">
+        <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span><strong>Ultimate Safeguard Bot v2.8 Active:</strong> Monitoring risk volatility across all retail allocation parameters.</span>
+    </div>
+
+    <header class="sticky top-0 z-40 backdrop-blur-lg bg-[#030712]/90 border-b border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 p-2.5 rounded-xl text-white shadow-lg shadow-blue-500/20">
+                    <i class="fa-solid fa-shield-halved text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-tight text-white">SCHRODERS</span>
+                    <span class="text-[10px] tracking-widest font-bold text-blue-500 uppercase -mt-1">INVESTMENTS</span>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-400">
+                <a href="#home" class="hover:text-white transition-colors">Home</a>
+                <a href="#about" class="hover:text-white transition-colors">About Us</a>
+                <a href="#services" class="hover:text-white transition-colors">Services</a>
+                <a href="#plans" class="hover:text-white transition-colors">Investment Plans</a>
+                <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+                <a href="#blog" class="hover:text-white transition-colors">Blog</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact Us</a>
+                <a href="#dashboard" class="text-blue-400 hover:text-blue-300 flex items-center gap-1.5 bg-blue-950/40 px-3 py-1.5 rounded-lg border border-blue-900/40">
+                    <i class="fa-solid fa-wallet text-xs"></i> Client Portal
+                </a>
+            </nav>
+
+            <div class="hidden sm:flex items-center gap-3">
+                <button onclick="openModal('loginModal')" class="px-4 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">Login</button>
+                <button onclick="openModal('registerModal')" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-sm font-semibold rounded-xl text-white shadow-lg shadow-blue-500/20 transition-all transform hover:-translate-y-0.5">Register Profile</button>
+            </div>
+
+            <button onclick="toggleMobileNavbar()" class="lg:hidden text-slate-400 hover:text-white p-2">
+                <i class="fa-solid fa-bars text-xl" id="navIcon"></i>
+            </button>
+        </div>
+
+        <div id="mobileDropdown" class="hidden lg:hidden bg-[#030712] border-b border-slate-900 px-4 pt-2 pb-6 space-y-3 font-medium">
+            <a href="#home" onclick="toggleMobileNavbar()" class="block text-slate-300 py-2">Home</a>
+            <a href="#about" onclick="toggleMobileNavbar()" class="block text-slate-300 py-2">About Us</a>
+            <a href="#services" onclick="toggleMobileNavbar()" class="block text-slate-300 py-2">Services</a>
+            <a href="#plans" onclick="toggleMobileNavbar()" class="block text-slate-300 py-2">Investment Plans</a>
+            <a href="#dashboard" onclick="toggleMobileNavbar()" class="block text-blue-400 py-2">Client Dashboard</a>
+            <a href="#faq" onclick="toggleMobileNavbar()" class="block text-slate-300 py-2">FAQ</a>
+            <a href="#blog" onclick="toggleMobileNavbar()" class="block text-slate-300 py-2">Blog</a>
+            <a href="#contact" onclick="toggleMobileNavbar()" class="block text-slate-300 py-2">Contact Us</a>
+            <div class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-900">
+                <button onclick="toggleMobileNavbar(); openModal('loginModal')" class="w-full py-2.5 bg-slate-900 border border-slate-800 text-xs font-bold text-white rounded-xl">Login</button>
+                <button onclick="toggleMobileNavbar(); openModal('registerModal')" class="w-full py-2.5 bg-blue-600 text-xs font-bold text-white rounded-xl">Register</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(29,78,216,0.15),transparent_50%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-robot"></i> Premium Automated Capital Protection
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Securing Capital Yields with the Ultimate <span class="bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">Safeguard Trading Matrix</span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Deploy your digital portfolio into Schroders Investments. Our autonomous infrastructure tirelessly monitors risk mitigation metrics, locking in systemic profits through institutional algorithmic trade channels.
+                    </p>
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#plans" class="px-6 py-3.5 bg-blue-600 hover:bg-blue-500 font-semibold rounded-xl text-sm transition-all shadow-lg shadow-blue-500/20 text-white transform hover:-translate-y-0.5">Explore Yield Tiers</a>
+                        <a href="#dashboard" class="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 font-semibold rounded-xl text-sm border border-slate-800 transition-all text-slate-300">Launch Live Dashboard</a>
+                    </div>
+                    <p class="text-xs text-slate-500 flex items-center justify-center lg:justify-start gap-1.5">
+                        <i class="fa-solid fa-gift text-blue-500"></i> Affiliate Incentives Enabled: Claim an instantaneous <strong class="text-blue-400 font-semibold">10% Referrer Commission</strong> on downstream capital volume.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-2xl backdrop-blur-md relative overflow-hidden glow-blue">
+                        <div class="absolute -right-12 -top-12 w-44 h-44 bg-blue-600/10 rounded-full blur-3xl"></div>
+                        <div class="flex items-center justify-between mb-5 border-b border-slate-800/60 pb-4">
+                            <div class="flex items-center gap-2.5">
+                                <span class="flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Schroders Safeguard Engine</h3>
+                            </div>
+                            <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-900/40 px-2 py-0.5 rounded-md font-mono font-bold">SECURE_RUNNING</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-900 flex items-center justify-between">
+                                <div class="space-y-0.5">
+                                    <span class="text-[10px] text-slate-500 block uppercase font-bold tracking-wider">Asset Safety Lock Status</span>
+                                    <span class="text-sm font-bold text-slate-200">100% Shield Integrity</span>
+                                </div>
+                                <div class="text-emerald-400 text-lg p-2 bg-emerald-950/40 border border-emerald-900/30 rounded-lg"><i class="fa-solid fa-lock-open"></i></div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-950 p-3 rounded-xl border border-slate-900">
+                                    <span class="text-[10px] text-slate-500 block mb-0.5 font-bold uppercase">Risk Volatility Limit</span>
+                                    <span class="text-base font-bold font-mono text-blue-400">&lt; 0.04% Max</span>
+                                </div>
+                                <div class="bg-slate-950 p-3 rounded-xl border border-slate-900">
+                                    <span class="text-[10px] text-slate-500 block mb-0.5 font-bold uppercase">Affiliate Payload Rate</span>
+                                    <span class="text-base font-bold font-mono text-white">10% Standard</span>
+                                </div>
+                            </div>
+
+                            <div class="text-[10px] font-mono text-slate-500 bg-slate-950 p-3 rounded-xl border border-slate-900/80 space-y-1.5">
+                                <div class="flex justify-between items-center text-emerald-400">
+                                    <span>[SAFEGUARD] Imbalance isolated on BTC network</span>
+                                    <span class="text-slate-600">Active</span>
+                                </div>
+                                <div class="flex justify-between items-center text-blue-400">
+                                    <span>[MONITOR] Auto-hedging multi-sig balances</span>
+                                    <span class="text-slate-600">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="border-t border-b border-slate-900 bg-slate-900/20 py-10 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <p class="text-3xl font-extrabold text-white font-mono">$64M+</p>
+                    <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mt-1">Total Assets Safeguarded</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-extrabold text-blue-500 font-mono">180K+</p>
+                    <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mt-1">Verified Client Portfolios</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-extrabold text-white font-mono">0.00%</p>
+                    <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mt-1">Historical Capital Loss</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-extrabold text-emerald-400 font-mono">10% Fixed</p>
+                    <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mt-1">Direct Referrer Royalty</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 lg:py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-500 block">Corporate Footprint</span>
+                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Fusing Institutional Risk Management With Automated Precision</h2>
+                    <p class="text-slate-400 leading-relaxed text-sm sm:text-base">
+                        Schroders Investments operates at the convergence of financial infrastructure optimization and high-frequency risk modeling. By placing client capital protections directly inside our signature autonomous bot arrays, we maintain fixed mitigation barriers while targeting structured contract returns.
+                    </p>
+                    <div class="space-y-4 pt-2">
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-blue-950 p-2.5 rounded-xl border border-blue-900 text-blue-400 shrink-0"><i class="fa-solid fa-user-shield"></i></div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Active Mitigation Protocol</h4>
+                                <p class="text-xs text-slate-500 mt-1">Our autonomous systems isolate downside volatility spikes before exposure parameters impact core balances.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="bg-blue-950 p-2.5 rounded-xl border border-blue-900 text-blue-400 shrink-0"><i class="fa-solid fa-network-wired"></i></div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Transparent Ledger Integrity</h4>
+                                <p class="text-xs text-slate-500 mt-1">All payment pathways resolve straight to explicitly auditable cryptographic processing networks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl p-6 relative">
+                    <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-4">Core Bot Safeguard Parameters</h3>
+                    <div class="space-y-3 font-mono text-xs">
+                        <div class="flex justify-between p-2.5 bg-slate-950/60 rounded-lg border border-slate-900">
+                            <span class="text-slate-500">Node Designation:</span><span class="text-slate-300">SCHRODERS_MAX_V2</span>
+                        </div>
+                        <div class="flex justify-between p-2.5 bg-slate-950/60 rounded-lg border border-slate-900">
+                            <span class="text-slate-500">Affiliate Commission Logic:</span><span class="text-blue-400">Enabled (10% Payload)</span>
+                        </div>
+                        <div class="flex justify-between p-2.5 bg-slate-950/60 rounded-lg border border-slate-900">
+                            <span class="text-slate-500">Encryption Handshake Level:</span><span class="text-slate-300">ECC-256 Bit Hardened</span>
+                        </div>
+                        <div class="flex justify-between p-2.5 bg-slate-950/60 rounded-lg border border-slate-900">
+                            <span class="text-slate-500">Liquidation Protection:</span><span class="text-emerald-400">Fully Isolated</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-slate-900/30 border-t border-b border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3 mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-blue-500 block">Functional Scope</span>
+            <h2 class="text-3xl font-bold tracking-tight text-white">Advanced System Offerings</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto text-xs sm:text-sm">Institutional asset scaling deployed across strict, multi-signature settlement channels.</p>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-3.5 hover:border-blue-900/60 transition-colors">
+                <div class="text-blue-500 text-2xl"><i class="fa-solid fa-microchip"></i></div>
+                <h3 class="text-lg font-bold text-white">Algorithmic Arbitrage Execution</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Leveraging ultra-low latency parsing arrays to harvest systemic valuation differences across alternative networks.</p>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-3.5 hover:border-blue-900/60 transition-colors">
+                <div class="text-blue-500 text-2xl"><i class="fa-solid fa-user-lock"></i></div>
+                <h3 class="text-lg font-bold text-white">Autonomous Portfolio Monitoring</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Continuous mitigation bots monitor individual pools, insulating client layers against unexpected asset drops.</p>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-3.5 hover:border-blue-900/60 transition-colors">
+                <div class="text-blue-500 text-2xl"><i class="fa-solid fa-share-nodes"></i></div>
+                <h3 class="text-lg font-bold text-white">Affiliate Partner Node Infrastructure</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">A completely fixed 10% referrer distribution protocol credited natively upon allocation settlement validation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-blue-500 block">Contract Architecture</span>
+            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">System Structured Allocation Tiers</h2>
+            <p class="text-slate-400 text-xs sm:text-sm">Select an explicit risk-protected matrix profile aligned to your liquidity boundaries.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-blue-500/40 transition-all transform hover:-translate-y-1">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-base font-bold text-white">Basic Plan</h3>
+                            <span class="text-[9px] bg-blue-950 border border-blue-900/60 text-blue-400 px-2 py-0.5 rounded uppercase font-extrabold tracking-wider mt-1.5 inline-block">Tier 01</span>
+                        </div>
+                        <div class="text-right"><span class="text-2xl font-extrabold text-blue-400 font-mono">10%</span><span class="text-[9px] block text-slate-500 font-bold uppercase mt-0.5">Net Profit</span></div>
+                    </div>
+                    <div class="border-t border-b border-slate-800/60 py-3.5 my-4 space-y-2 font-mono text-xs">
+                        <div class="flex justify-between"><span class="text-slate-500">Min Input:</span><span class="text-slate-200 font-bold">$30</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Max Input:</span><span class="text-slate-200 font-bold">$599</span></div>
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-400 mb-6">
+                        <li><i class="fa-solid fa-circle-check text-blue-500 mr-2"></i> Standard Protection Guard</li>
+                        <li><i class="fa-solid fa-circle-check text-blue-500 mr-2"></i> 24/7 Automated Monitoring</li>
+                    </ul>
+                </div>
+                <a href="#dashboard" class="w-full py-2.5 text-center text-xs bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl font-bold transition-colors text-white">Deploy Matrix</a>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-blue-500/40 transition-all transform hover:-translate-y-1">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-base font-bold text-white">Medium Plan</h3>
+                            <span class="text-[9px] bg-blue-950 border border-blue-900/60 text-blue-400 px-2 py-0.5 rounded uppercase font-extrabold tracking-wider mt-1.5 inline-block">Tier 02</span>
+                        </div>
+                        <div class="text-right"><span class="text-2xl font-extrabold text-blue-400 font-mono">20%</span><span class="text-[9px] block text-slate-500 font-bold uppercase mt-0.5">Net Profit</span></div>
+                    </div>
+                    <div class="border-t border-b border-slate-800/60 py-3.5 my-4 space-y-2 font-mono text-xs">
+                        <div class="flex justify-between"><span class="text-slate-500">Min Input:</span><span class="text-slate-200 font-bold">$600</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Max Input:</span><span class="text-slate-200 font-bold">$2,999</span></div>
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-400 mb-6">
+                        <li><i class="fa-solid fa-circle-check text-blue-500 mr-2"></i> High-Speed Priority Processing</li>
+                        <li><i class="fa-solid fa-circle-check text-blue-500 mr-2"></i> Isolated Vault Safekeeping</li>
+                    </ul>
+                </div>
+                <a href="#dashboard" class="w-full py-2.5 text-center text-xs bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl font-bold transition-colors text-white">Deploy Matrix</a>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 flex flex-col justify-between relative transform hover:-translate-y-1 transition-all glow-blue">
+                <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-blue-600 text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-0.5 rounded-full text-white">Ultimate Tier</span>
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-base font-bold text-white">Ultimate Plan</h3>
+                            <span class="text-[9px] bg-blue-950 border border-blue-900/60 text-blue-400 px-2 py-0.5 rounded uppercase font-extrabold tracking-wider mt-1.5 inline-block">Tier 03</span>
+                        </div>
+                        <div class="text-right"><span class="text-2xl font-extrabold text-blue-400 font-mono">30%</span><span class="text-[9px] block text-slate-500 font-bold uppercase mt-0.5">Net Profit</span></div>
+                    </div>
+                    <div class="border-t border-b border-slate-800/60 py-3.5 my-4 space-y-2 font-mono text-xs">
+                        <div class="flex justify-between"><span class="text-slate-500">Min Input:</span><span class="text-slate-200 font-bold">$3,000</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Max Input:</span><span class="text-slate-200 font-bold">$14,999</span></div>
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-400 mb-6">
+                        <li><i class="fa-solid fa-circle-check text-blue-500 mr-2"></i> Continuous Security Auditing</li>
+                        <li><i class="fa-solid fa-circle-check text-blue-500 mr-2"></i> Premium Server Node Leasings</li>
+                    </ul>
+                </div>
+                <a href="#dashboard" class="w-full py-2.5 text-center text-xs bg-blue-600 hover:bg-blue-500 rounded-xl font-extrabold tracking-wide transition-colors text-white">Deploy Matrix</a>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-blue-500/40 transition-all transform hover:-translate-y-1">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-base font-bold text-white">Professional Plan</h3>
+                            <span class="text-[9px] bg-blue-950 border border-blue-900/60 text-blue-400 px-2 py-0.5 rounded uppercase font-extrabold tracking-wider mt-1.5 inline-block">Tier 04</span>
+                        </div>
+                        <div class="text-right"><span class="text-2xl font-extrabold text-blue-400 font-mono">50%</span><span class="text-[9px] block text-slate-500 font-bold uppercase mt-0.5">Net Profit</span></div>
+                    </div>
+                    <div class="border-t border-b border-slate-800/60 py-3.5 my-4 space-y-2 font-mono text-xs">
+                        <div class="flex justify-between"><span class="text-slate-500">Min Input:</span><span class="text-slate-200 font-bold">$15,000</span></div>
+                        <div class="flex justify-between"><span class="text-slate-500">Max Input:</span><span class="text-slate-400 font-bold">Unlimited</span></div>
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-400 mb-6">
+                        <li><i class="fa-solid fa-circle-check text-blue-500 mr-2"></i> Dedicated Physical Guard Core</li>
+                        <li><i class="fa-solid fa-circle-check text-blue-500 mr-2"></i> High-Tier Custom Backstopping</li>
+                    </ul>
+                </div>
+                <a href="#dashboard" class="w-full py-2.5 text-center text-xs bg-slate-950 hover:bg-slate-800 border border-slate-800 rounded-xl font-bold transition-colors text-white">Deploy Matrix</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="py-16 bg-slate-900/40 border-t border-b border-slate-900 scroll-mt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                        <i class="fa-solid fa-square-poll-vertical text-blue-500"></i> Client Allocation Dashboard
+                    </h2>
+                    <p class="text-xs text-slate-400">Live configuration dashboard showing absolute portfolio positioning status.</p>
+                </div>
+                <div class="flex bg-slate-950 p-1 rounded-xl border border-slate-900 self-start">
+                    <button class="px-3 py-1.5 bg-blue-600 rounded-lg text-xs font-bold text-white">Main Overview</button>
+                    <button onclick="alert('Transaction processing queue is currently empty.')" class="px-3 py-1.5 text-slate-400 hover:text-white transition-colors text-xs font-semibold">History Logs</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 relative overflow-hidden">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Account Balance</span>
+                            <span class="text-2xl font-extrabold font-mono text-white" id="accountBalance">$0.00</span>
+                            <div class="absolute right-3 bottom-3 text-slate-800/30 text-2xl"><i class="fa-solid fa-vault"></i></div>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 relative overflow-hidden">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Accumulated Profit</span>
+                            <span class="text-2xl font-extrabold font-mono text-emerald-400">+$0.00</span>
+                            <div class="absolute right-3 bottom-3 text-emerald-950/20 text-2xl"><i class="fa-solid fa-chart-line"></i></div>
+                        </div>
+                        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 relative overflow-hidden">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Active Investments</span>
+                            <span class="text-2xl font-extrabold font-mono text-blue-500" id="activeInvestments">$0.00</span>
+                            <div class="absolute right-3 bottom-3 text-blue-950/30 text-2xl"><i class="fa-solid fa-robot"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+                                <i class="fa-solid fa-wallet text-blue-500"></i> Verified Secure Funding Channels
+                            </h3>
+                            <span class="text-[10px] text-slate-500 font-mono">Highlight code string to copy</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <span class="text-xs font-semibold text-slate-300 flex items-center gap-2"><i class="fa-brands fa-bitcoin text-amber-500"></i> BTC Settlement Network</span>
+                                <code class="text-[11px] text-blue-400 bg-slate-900 px-3 py-1.5 rounded border border-slate-800 font-mono select-all break-all tracking-tight">1HnmFGoA4UGFuMCP9DrRUpNP8x1FrGbnDC</code>
+                            </div>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <span class="text-xs font-semibold text-slate-300 flex items-center gap-2"><i class="fa-solid fa-tether text-emerald-500"></i> USDT (TRC-20 Layer)</span>
+                                <code class="text-[11px] text-blue-400 bg-slate-900 px-3 py-1.5 rounded border border-slate-800 font-mono select-all break-all tracking-tight">THG2WgaEf4fzUHbeh56Q8GmYXg6rNomfuy</code>
+                            </div>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <span class="text-xs font-semibold text-slate-300 flex items-center gap-2"><i class="fa-brands fa-ethereum text-indigo-400"></i> ETH Network Address</span>
+                                <code class="text-[11px] text-blue-400 bg-slate-900 px-3 py-1.5 rounded border border-slate-800 font-mono select-all break-all tracking-tight">0xa293108590e799e487af1d27a6a5960da7fa014c</code>
+                            </div>
+                            <div class="p-3 bg-slate-950 rounded-xl border border-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <span class="text-xs font-semibold text-slate-300 flex items-center gap-2"><i class="fa-solid fa-coins text-yellow-500"></i> USDT (BEP-20 Network)</span>
+                                <code class="text-[11px] text-blue-400 bg-slate-900 px-3 py-1.5 rounded border border-slate-800 font-mono select-all break-all tracking-tight">0xa293108590e799e487af1d27a6a5960da7fa014c</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 flex flex-col justify-between glow-emerald">
+                    <div class="space-y-4">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300">Initialize Safeguard Plan</h3>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">1. Select Target Asset Route</label>
+                            <select id="assetSelect" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500 font-semibold">
+                                <option value="BTC">Bitcoin (BTC Network)</option>
+                                <option value="TRC20">USDT (TRC-20 Address)</option>
+                                <option value="ETH">Ethereum (ETH Network)</option>
+                                <option value="BEP20">USDT (BEP-20 Matrix)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5">2. Specific Deposit Allocation (USD)</label>
+                            <input type="number" id="depositInput" placeholder="Minimum size $30" oninput="calculateActiveContract()" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 font-mono focus:outline-none focus:border-blue-500">
+                        </div>
+
+                        <div class="p-3.5 bg-slate-950 rounded-xl border border-slate-900 space-y-2 text-xs">
+                            <div class="flex justify-between"><span class="text-slate-500">Identified Tier Profile:</span><span id="outputTier" class="font-bold text-blue-400">-</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Assigned Profit Yield:</span><span id="outputRate" class="font-mono font-bold text-emerald-400">0%</span></div>
+                            <div class="flex justify-between"><span class="text-slate-500">Expected Bot Profit Return:</span><span id="outputPayout" class="font-mono font-bold text-white">$0.00</span></div>
+                        </div>
+
+                        <div class="p-3 bg-blue-950/40 border border-blue-900/50 rounded-xl space-y-1">
+                            <span class="text-[9px] text-blue-400 font-bold uppercase tracking-wider block">Target Crypto Deposit Wallet:</span>
+                            <p id="targetWalletString" class="text-[10px] font-mono break-all text-slate-300">1HnmFGoA4UGFuMCP9DrRUpNP8x1FrGbnDC</p>
+                        </div>
+                    </div>
+                    <button onclick="simulateInboundDeposit()" class="w-full mt-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-xs font-bold rounded-lg text-white transition-all uppercase tracking-widest">Deploy Contract</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-blue-500 block">System Verification</span>
+            <h2 class="text-3xl font-bold tracking-tight text-white">Client Portfolio Validation</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl space-y-3">
+                <div class="flex text-amber-400 text-xs gap-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-xs text-slate-400 italic">"The automated shield monitor architecture isolated market variations flawlessly. Payout cycles sync seamlessly with the predefined tier structures."</p>
+                <div class="text-xs font-bold text-white">- Christopher G., Asset Structurer</div>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl space-y-3">
+                <div class="flex text-amber-400 text-xs gap-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-xs text-slate-400 italic">"I was paid the 10% affiliate referrer commission straight to my account profile instantly upon my downline's node initialization confirmation."</p>
+                <div class="text-xs font-bold text-white">- Sarah M., Private Pool Operator</div>
+            </div>
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-xl space-y-3">
+                <div class="flex text-amber-400 text-xs gap-0.5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                <p class="text-xs text-slate-400 italic">"The Ultimate bot option delivers reliable computational metrics. Having complete dark-mode transparency makes navigation very smooth."</p>
+                <div class="text-xs font-bold text-white">- Jonathan V., Capital Allocator</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-slate-900/10 border-t border-slate-900 scroll-mt-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-bold tracking-tight text-white">Frequently Audited Guidelines</h2>
+                <p class="text-slate-400 text-xs sm:text-sm">Review baseline parameters of our portfolio automation engines.</p>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                    <h4 class="text-sm font-bold text-white">How does the 10% Referrer Commission settle into balances?</h4>
+                    <p class="text-xs text-slate-400 mt-2">Affiliate parameters monitor internal network nodes. Once an allocation settles on-chain, 10% is processed directly into the partner account balance profile.</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+                    <h4 class="text-sm font-bold text-white">What protection metrics does the Ultimate Bot enforce?</h4>
+                    <p class="text-xs text-slate-400 mt-2">The safeguard bot oversees structural execution margins around the clock, implementing isolated safety thresholds to insulate client collateral layers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="py-20 border-t border-slate-900 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center space-y-2">
+                <h2 class="text-3xl font-bold tracking-tight text-white">Schroders System Logs</h2>
+                <p class="text-slate-400 text-sm">Algorithmic analysis reporting and infrastructural network metrics.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group">
+                    <div class="h-44 bg-slate-950 border-b border-slate-800 p-6 flex flex-col justify-between">
+                        <span class="text-[9px] bg-blue-950 text-blue-400 border border-blue-900/60 px-2 py-0.5 rounded-md self-start uppercase font-bold tracking-wider">Bot Reports</span>
+                        <h3 class="text-base font-bold text-white group-hover:text-blue-400 transition-colors">Safeguard Core Optimization for Extreme Volatility Isolation</h3>
+                    </div>
+                    <p class="text-xs text-slate-400 p-6 leading-relaxed">A strategic layout review of the core computational pathways driving automated capital safeguarding matrices under erratic liquidity conditions.</p>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group">
+                    <div class="h-44 bg-slate-950 border-b border-slate-800 p-6 flex flex-col justify-between">
+                        <span class="text-[9px] bg-emerald-950 text-emerald-400 border border-emerald-900/40 px-2 py-0.5 rounded-md self-start uppercase font-bold tracking-wider">Network Integrity</span>
+                        <h3 class="text-base font-bold text-white group-hover:text-blue-400 transition-colors">Securing Multiple Cryptographic Deposit Verification Pathways</h3>
+                    </div>
+                    <p class="text-xs text-slate-400 p-6 leading-relaxed">Analyzing automated tracking engines mapped across explicit BTC, ERC-20, TRC-20, and BEP-20 transaction processing frameworks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-slate-900/40 border-t border-slate-900 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-bold tracking-tight text-white">Initiate Secure Transmission</h2>
+                    <p class="text-xs text-slate-400 leading-relaxed">Do you have institutional inquiries regarding custom multi-node safeguard bot arrangements? Securely route your request straight to core support channels.</p>
+                    <div class="space-y-3 text-xs text-slate-400">
+                        <p><i class="fa-solid fa-envelope text-blue-500 mr-2.5"></i> operational@schroders-investments.internal</p>
+                        <p><i class="fa-solid fa-location-dot text-blue-500 mr-2.5"></i> Level 12, Alpha Tower, Corporate Center, London, UK</p>
+                    </div>
+                </div>
+                <form class="space-y-4 bg-slate-900 border border-slate-800 p-6 rounded-2xl" onsubmit="event.preventDefault(); alert('Message queued securely.');">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-slate-500 mb-1">Full Identity</label>
+                            <input type="text" placeholder="John Doe" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500" required>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-slate-500 mb-1">Email Destination</label>
+                            <input type="email" placeholder="john@net.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold text-slate-500 mb-1">Message String Parameters</label>
+                        <textarea rows="4" placeholder="Enter specific portfolio inquiry context..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-500 font-bold rounded-xl text-xs text-white transition-colors tracking-wide">Dispatch Secure Route</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#030712] border-t border-slate-900 py-12 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved text-blue-500 text-sm"></i>
+                <span>&copy; 2026 Schroders Investments Matrix. All system monitoring rights reserved.</span>
+            </div>
+            <div class="flex gap-4 text-slate-400 text-base">
+                <a href="#" class="hover:text-blue-500 transition-colors"><i class="fa-brands fa-telegram"></i></a>
+                <a href="#" class="hover:text-blue-500 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="hover:text-blue-500 transition-colors"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="toggleFloatingChat()" class="bg-blue-600 hover:bg-blue-500 text-white p-3.5 rounded-full shadow-2xl transition-transform transform hover:scale-105 glow-blue">
+            <i class="fa-solid fa-message-bot text-lg" id="chatButtonIcon"></i>
+        </button>
+        <div id="floatingChatBox" class="hidden absolute bottom-16 right-0 w-80 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden">
+            <div class="bg-blue-600 p-4 flex justify-between items-center text-white">
+                <div class="flex items-center gap-2">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs font-bold tracking-wide">Schroders Autonomous Support</span>
+                </div>
+                <button onclick="toggleFloatingChat()" class="text-white/80 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-4 h-48 overflow-y-auto space-y-3 text-xs bg-slate-950 hide-scrollbar" id="chatSessionLogs">
+                <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl max-w-[85%] text-slate-300">
+                    Terminal connection initialized. Ask your core safeguard deployment questions.
+                </div>
+            </div>
+            <div class="p-3 bg-slate-900 border-t border-slate-800 flex gap-2">
+                <input type="text" id="chatSessionInput" placeholder="Type query string..." class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-xs text-slate-300 focus:outline-none focus:border-blue-500">
+                <button onclick="dispatchClientChatString()" class="bg-blue-600 text-white px-3 rounded-lg text-xs hover:bg-blue-500"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loginModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full p-6 space-y-4 relative glow-blue">
+            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            <div class="text-center space-y-1">
+                <h3 class="text-lg font-bold text-white">Client Node Access</h3>
+                <p class="text-xs text-slate-500">Authenticate active protection dashboard access.</p>
+            </div>
+            <form class="space-y-3" onsubmit="event.preventDefault(); closeModal('loginModal'); alert('Session authorized successfully.');">
+                <div>
+                    <label class="block text-[10px] uppercase font-bold text-slate-500 mb-1">User Identifier</label>
+                    <input type="text" placeholder="UID or Email" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold text-slate-500 mb-1">Secure Passkey Parameters</label>
+                    <input type="password" placeholder="••••••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500" required>
+                </div>
+                <button type="submit" class="w-full mt-2 py-2.5 bg-blue-600 hover:bg-blue-500 text-xs font-bold rounded-xl text-white uppercase tracking-wider">Request Auth handshake</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full p-6 space-y-4 relative glow-blue">
+            <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-slate-500 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            <div class="text-center space-y-1">
+                <h3 class="text-lg font-bold text-white">Register Node Profile</h3>
+                <p class="text-xs text-slate-500">Establish structural cryptographic account credentials.</p>
+            </div>
+            <form class="space-y-3" onsubmit="event.preventDefault(); closeModal('registerModal'); alert('Node entry parameter recorded.');">
+                <div>
+                    <label class="block text-[10px] uppercase font-bold text-slate-500 mb-1">Identity User Handle</label>
+                    <input type="text" placeholder="Username" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold text-slate-500 mb-1">Communication Endpoint</label>
+                    <input type="email" placeholder="client@net.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold text-slate-500 mb-1">Passkey Secure Configuration</label>
+                    <input type="password" placeholder="••••••••••••" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-300 focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase font-bold text-slate-500 mb-1">Referral Token ID (10% Bonus Lock-In)</label>
+                    <input type="text" placeholder="Optional Partner Code" class="w-full bg-slate-950 text-center font-mono text-blue-400 border border-dashed border-blue-900/60 rounded-lg p-2 text-xs focus:outline-none">
+                </div>
+                <button type="submit" class="w-full mt-2 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-xs font-bold rounded-xl text-white uppercase tracking-wider">Generate Network Node</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        // CLIENT SPECIFIC TRANSACTION DATA STORAGE MAP
+        const CRYPTO_ROUTER = {
+            "BTC": "1HnmFGoA4UGFuMCP9DrRUpNP8x1FrGbnDC",
+            "TRC20": "THG2WgaEf4fzUHbeh56Q8GmYXg6rNomfuy",
+            "ETH": "0xa293108590e799e487af1d27a6a5960da7fa014c",
+            "BEP20": "0xa293108590e799e487af1d27a6a5960da7fa014c"
+        };
+
+        // NAV BAR TOGGLER
+        function toggleMobileNavbar() {
+            const dropdown = document.getElementById('mobileDropdown');
+            const icon = document.getElementById('navIcon');
+            dropdown.classList.toggle('hidden');
+            if (dropdown.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-bars text-xl";
+            } else {
+                icon.className = "fa-solid fa-xmark text-xl";
+            }
+        }
+
+        // CONTROL POP MODAL SYSTEM
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        // LIVE SUPPORT WIDGET SIMULATION HANDLERS
+        function toggleFloatingChat() {
+            document.getElementById('floatingChatBox').classList.toggle('hidden');
+        }
+
+        function dispatchClientChatString() {
+            const input = document.getElementById('chatSessionInput');
+            const logs = document.getElementById('chatSessionLogs');
+            if(!input.value.trim()) return;
+
+            const clientDiv = document.createElement('div');
+            clientDiv.className = "bg-blue-600 text-white p-2 rounded-xl max-w-[85%] ml-auto text-right text-xs";
+            clientDiv.innerText = input.value;
+            logs.appendChild(clientDiv);
+
+            input.value = "";
+            logs.scrollTop = logs.scrollHeight;
+
+            setTimeout(() => {
+                const echoDiv = document.createElement('div');
+                echoDiv.className = "bg-slate-900 border border-slate-800 p-2.5 rounded-xl max-w-[85%] text-slate-400 text-xs";
+                echoDiv.innerText = "Processing request string. The Schroders Safeguard Monitoring Engine acknowledges your diagnostic query.";
+                logs.appendChild(echoDiv);
+                logs.scrollTop = logs.scrollHeight;
+            }, 750);
+        }
+
+        // TIER AND SYSTEM ALLOCATION MULTI-RULE CALCULATOR
+        function calculateActiveContract() {
+            const inputVal = document.getElementById('depositInput').value;
+            const chosenAsset = document.getElementById('assetSelect').value;
+            const parsedAmount = parseFloat(inputVal);
+
+            const outTier = document.getElementById('outputTier');
+            const outRate = document.getElementById('outputRate');
+            const outPayout = document.getElementById('outputPayout');
+            const targetWalletText = document.getElementById('targetWalletString');
+
+            // Swap wallet presentation lines
+            targetWalletText.innerText = CRYPTO_ROUTER[chosenAsset] || "";
+
+            if (isNaN(parsedAmount) || parsedAmount <= 0) {
+                outTier.innerText = "-";
+                outRate.innerText = "0%";
+                outPayout.innerText = "$0.00";
+                return;
+            }
+
+            let computedProfitPercentage = 0;
+            let designatedTierName = "";
+
+            // Evaluate inputs against explicitly declared logic parameters
+            if (parsedAmount >= 30 && parsedAmount <= 599) {
+                designatedTierName = "Basic Plan";
+                computedProfitPercentage = 10;
+            } else if (parsedAmount >= 600 && parsedAmount <= 2999) {
+                designatedTierName = "Medium Plan";
+                computedProfitPercentage = 20;
+            } else if (parsedAmount >= 3000 && parsedAmount <= 14999) {
+                designatedTierName = "Ultimate Plan";
+                computedProfitPercentage = 30;
+            } else if (parsedAmount >= 15000) {
+                designatedTierName = "Professional Plan";
+                computedProfitPercentage = 50;
+            } else {
+                designatedTierName = "Under Allocation Floor ($30)";
+                computedProfitPercentage = 0;
+            }
+
+            outTier.innerText = designatedTierName;
+            outRate.innerText = computedProfitPercentage + "%";
+            
+            const numericalGain = parsedAmount * (computedProfitPercentage / 100);
+            outPayout.innerText = "$" + numericalGain.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+
+        // INBOUND TRANSACTION SIMULATOR
+        function simulateInboundDeposit() {
+            const sizeInput = document.getElementById('depositInput').value;
+            const amt = parseFloat(sizeInput);
+
+            if (isNaN(amt) || amt < 30) {
+                alert("The minimal configuration index boundary for node activation is $30.");
+                return;
+            }
+
+            document.getElementById('activeInvestments').innerText = "$" + amt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            alert("Cryptographic data sync initiated. Your active deployment parameters are under monitoring via the Ultimate Safeguard Bot array.");
+        }
+
+        // Register action listeners to trigger calculation swaps automatically when alternative assets change
+        document.getElementById('assetSelect').addEventListener('change', calculateActiveContract);
+    </script>
+</body>
+</html>
